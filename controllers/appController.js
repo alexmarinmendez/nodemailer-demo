@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const { EMAIL, PASSWORD } = require('../env.js')
 
 const signup = async (req, res) => {
     let testAccount = await nodemailer.createTestAccount();
@@ -33,6 +34,15 @@ const signup = async (req, res) => {
 }
 
 const getbill = (req, res) => {
+    let config = {
+      service: 'gmail',
+      auth: {
+        user: EMAIL,
+        pasw: PASSWORD
+      }
+    }
+    let transporter = nodemailer.createTransport(config)
+
     res.status(201).json("getbill successfully...")
 }
 
